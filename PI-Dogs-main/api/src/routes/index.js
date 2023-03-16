@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const axios = require("axios");
 const { Temperaments, Dog } = require("../db");
+const { API_KEY } = process.env;
+const URL = `https://api.thedogapi.com/v1/breeds?${API_KEY}`;
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -18,7 +21,7 @@ const getApiInfo = async () => {
       temperament: dog.temperament,
       weight: dog.weight,
       origin: dog.origin,
-      temperamentCC: dog.temperament,
+      // temperamentCC: dog.temperament,
     };
   });
   return apiInfo;
