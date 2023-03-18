@@ -3,7 +3,7 @@ import {
   GET_ALL_BREEDS,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
-} from "../action_types/action_types";
+} from "../action-types/action-types";
 
 const initialState = {
   dogs: [],
@@ -23,11 +23,12 @@ const handleOrder2 = (symbol) => {
     // un Number en la posicion[0] más un Number en la posición [1] y lo divido por 2
     // pipícucú
     .map((inst) => Number(inst[0]) + Number(inst[1]) / 2);
-    // evaluamos
+    // ordenamos de mas liviano a mas pesado
   if (symbol === "-") {
     let lighterToHeavier = averageWeight.sort();
     return lighterToHeavier;
   }
+  // evaluamos de mas pesado a mas liviano
   if (symbol === "+") {
     let heavierToLighter = averageWeight.reverse();
     return heavierToLighter;

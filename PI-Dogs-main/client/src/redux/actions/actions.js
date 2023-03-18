@@ -4,7 +4,7 @@ import {
   GET_ALL_BREEDS,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
-} from "../action_types/action_types";
+} from "../action-types/action-types";
 
 export const getAllBreeds = () => {
   return async function (dispatch) {

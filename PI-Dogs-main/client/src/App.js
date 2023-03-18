@@ -1,22 +1,20 @@
-import './App.css';
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Landing from './components/landingPage/landing/Landing';
+import Landing from "./components/landingPage/LandingPage";
 import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
 import Form from "./components/form/Form";
 import NavBar from "./components/navBar/NavBar";
 
-
-
 function App() {
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <Routes>
-        <Route exact path= "/" element={<Landing/>} />
-        <Route exact path= "/home" element={<Home/>} />
-        <Route exact path= "/detail" element={<Detail/>} />
-        <Route exact path= "/form" element={<Form/>} />
+        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/detail" element={<Detail />} />
+        <Route exact path="/form" element={<Form />} />
       </Routes>
     </div>
   );
