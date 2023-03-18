@@ -37,7 +37,6 @@ const getRazaByIdHandler = async (req, res) => {
   }
 };
 const createNewDogHandler = async (req, res) => {
-  // from_db
   let { weight, height, name, life_span, image, temperament, from_DB} =
     req.body;
   try {
