@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './NavBar.css';
 
 const NavBar = () => {
   return (
-    <div>NavBar</div>
+    <div className='mainContainer-NavBar'>
+      <ul>
+        <li>Inicio</li>
+        <li>Sobre mi</li>
+        <li>Contacto</li>
+        <li>Nuevos perritos</li>
+      </ul>
+    </div>
   )
 }
 

@@ -1,0 +1,11 @@
+.mainContainer-landingPage{
+    text-align: center;
+}
+
+.button-landingPage{
+    padding: 5px;
+    margin-top: 15px;
+    width: 6%;
+    background-color: #ffbfbf;
+    border: none;
+}

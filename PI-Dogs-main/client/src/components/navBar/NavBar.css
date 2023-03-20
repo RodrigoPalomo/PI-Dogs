@@ -1,0 +1,7 @@
+ul{
+    margin-right: 40px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+}
