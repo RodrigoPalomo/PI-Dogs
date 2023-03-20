@@ -8,7 +8,6 @@ const Dog = ({image, name, temperament, weight}) => {
       <h2>{name}</h2>
       <h3>Temperament: {temperament}</h3>
       <h3>Weight: {weight}</h3>
-      {/* <hr /> */}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import {
   FILTER_BY_ORIGIN,
   GET_ALL_BREEDS,
   ORDER_BY_NAME,
-  ORDER_BY_WEIGHT,
+  // ORDER_BY_WEIGHT,
 } from "../action-types/action-types";
 
 export const getAllBreeds = () => {
@@ -23,12 +23,26 @@ export const orderByName = (payload) => {
   };
 };
 
-export const orderByWeight = (payload) => {
-  return {
-    type: ORDER_BY_WEIGHT,
-    payload,
-  };
-};
+export function getNameDog(name){
+  return async function (dispatch){
+    try {
+      let json = await axios.get(`http://localhost:3001/dogs?name=${name}`)
+      return dispatch({
+        type: "GET_NAME_DOG",
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+// export const orderByWeight = (payload) => {
+//   return {
+//     type: ORDER_BY_WEIGHT,
+//     payload,
+//   };
+// };
 
 export const filterByOrigin = (payload) => {
   return {

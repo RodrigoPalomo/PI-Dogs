@@ -45,7 +45,6 @@ const AllDogs = () => {
   }, []);
 
   //Orders: by name (OK), by weight (DONE, BUT NOT WORKING!)
-  //Filter by DB (DONE, BUT NOT WORKING!)
   //Filter by temperament-PENDING
 
   return (
