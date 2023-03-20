@@ -5,6 +5,7 @@ import { filterByOrigin, getAllBreeds, orderByName } from "../../../redux/action
 import Dog from "../dog/Dog"
 import Pagination from '../pagination/Pagination';
 import Temperaments from "../temperaments/Temperaments";
+import './AllDogs.css';
 
 const AllDogs = () => {
 
@@ -48,8 +49,8 @@ const AllDogs = () => {
   //Filter by temperament-PENDING
 
   return (
-    <div>
-
+    <>
+    <section className='filters-AllDogs'> 
       <select onChange={event => { handleOrder1(event) }}>
         <option value="a-z">Order from A to Z</option>
         <option value="z-a">Order from Z to A</option>
@@ -65,7 +66,7 @@ const AllDogs = () => {
         <option value="api">Api dogs</option>
         <option value="from_DB">My dogs</option>
       </select>
-
+      </section>
       <Pagination
         dogsPerPage={dogsPerPage}
         dogs={dogs.length}
@@ -74,6 +75,7 @@ const AllDogs = () => {
       {
         currentDogs?.map(dog => {
           return (
+            <div className='cardDogs-AllDogs'>
             <Dog
               key={dog.id}
               image={dog.image}
@@ -81,10 +83,11 @@ const AllDogs = () => {
               temperament={dog.temperament}
               weight={dog.weight.metric}
             />
+            </div>
           )
         })
       }
-    </div>
+    </>
   )
 }
 

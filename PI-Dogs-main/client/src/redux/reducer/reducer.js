@@ -3,6 +3,7 @@ import {
   GET_ALL_BREEDS,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
+  GET_TEMPERAMENTS_LIST
 } from "../action-types/action-types";
 
 const initialState = {
@@ -43,6 +44,11 @@ const reducer = (state = initialState, action) => {
         dogs: action.payload,
         allDogs: action.payload,
       };
+      // case GET_TEMPERAMENTS_LIST:
+      //   return {
+      //     ...state,
+      //     temperaments: action.payload,
+      //   };
     case ORDER_BY_NAME:
       let ordered =
         action.payload === "a-z"

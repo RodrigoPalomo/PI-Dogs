@@ -1,0 +1,11 @@
+.mainContainer-Dog{
+    text-align: center;
+    /* border: 1px solid tomato;
+    padding: 50px; */
+}
+.img-Dog{
+    width: 500px;
+}
+.mainContainer-Dog > hr{
+    margin-top: 50px;
+}

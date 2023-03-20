@@ -1,0 +1,16 @@
+.numbers-Pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    margin-bottom: 100px;
+}
+
+.pages-Pagination {
+    display: flex;
+    gap: 37px;
+    list-style: none;
+}
+
+.numButton-Pagination {
+    text-decoration: underline;
+}

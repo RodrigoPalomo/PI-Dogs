@@ -1,0 +1,17 @@
+.filters-AllDogs{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+.filters-AllDogs > select{
+    padding: 5px;
+    background-color: #eae6ca;
+}
+.cardDogs-AllDogs{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 200px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 50px;
+}
