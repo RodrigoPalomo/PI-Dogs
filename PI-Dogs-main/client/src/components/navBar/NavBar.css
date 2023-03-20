@@ -1,8 +1,21 @@
-ul{
+.mainContainer-NavBar{
+    background-color: #ffc492;
+    display: flex;
+    justify-content: center;
+}
+.lista-NavBar{
     margin-right: 40px;
-    margin-top: 25px;
+    padding: 20px;
     display: flex;
     justify-content: flex-end;
     gap: 50px;
     list-style: none;
+    background-color: #ffc492;
+}
+.lista-NavBar > a > li{
+    background-color: #ffc492;
+}
+
+a{
+    text-decoration: none;
 }

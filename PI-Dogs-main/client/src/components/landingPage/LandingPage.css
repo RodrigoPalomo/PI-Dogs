@@ -1,11 +1,20 @@
 .mainContainer-landingPage{
     text-align: center;
 }
-
+.title-LandingPage{
+    margin-top: 70px;
+}
 .button-landingPage{
     padding: 5px;
     margin-top: 15px;
     width: 6%;
     background-color: #ffbfbf;
     border: none;
+}
+.img-LandingPage{
+    margin-top: 33px;
+}
+.a-LandingPage{
+    display: flex;
+    justify-content: center;
 }
