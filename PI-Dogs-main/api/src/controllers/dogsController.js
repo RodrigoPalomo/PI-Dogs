@@ -8,20 +8,49 @@ const getBreedsFromApi = async () => {
   let apiData = await axios(
     `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
   );
-  let fromApi = await apiData.data.map((dog) => {
-    //retorno todo lo que necesito
+  let fromApi = await apiData.data.map((inst) => {
+    let weightMin = parseInt(inst.weight.metric.slice(0, 2).trim());
+    let weightMax = parseInt(inst.weight.metric.slice(4).trim());
+    let averageWeight = weightMax + weightMin;
+
+    if (weightMin && weightMax) {
+      weightMin = weightMin;
+      weightMax = weightMax;
+      averageWeight = averageWeight / 2;
+    } else if (weightMin && !weightMax) {
+      weightMin = weightMin;
+      weightMax = weightMin;
+      averageWeight = (weightMax + weightMin) / 2;
+    } else if (!weightMin && weightMax) {
+      weightMin = weightMax;
+      weightMax = weightMax;
+      averageWeight = (weightMax + weightMin) / 2;
+    } else {
+      if (inst.name === "Smooth Fox Terrier") {
+        weightMin = 6;
+        weightMax = 9;
+        averageWeight = (weightMax + weightMin) / 2;
+      } else {
+        weightMin = 20;
+        weightMax = 30;
+        averageWeight = (weightMax + weightMin) / 2;
+      }
+    }
     return {
-      id: dog.id,
-      weight: dog.weight,
-      height: dog.height,
-      name: dog.name,
-      life_span: dog.life_span,
-      image: dog.image.url,
-      temperament: dog.temperament,
+      id: inst.id,
+      weightMin: weightMin,
+      weightMax: weightMax,
+      averageWeight: averageWeight,
+      height: inst.height,
+      name: inst.name,
+      life_span: inst.life_span,
+      image: inst.image.url,
+      temperament: inst.temperament,
     };
   });
   return fromApi;
 };
+
 // traigo todo lo que necesito de mi db
 const getBreedsFromDb = async () => {
   let dbData = await Dog.findAll({
@@ -49,6 +78,7 @@ const getBreedsFromDb = async () => {
       temperament: dog.temperament
         ? dog.temperament.map((el) => el.name).join(", ")
         : ["Happy"],
+      from_DB: true,
     };
   });
   // retornamos
@@ -104,7 +134,7 @@ const createNewDog = async (
   image,
   temperament
 ) => {
-    // si alguno de estos datos no existe entonces tirame el error
+  // si alguno de estos datos no existe entonces tirame el error
   if (!weight || !height || !name || !life_span || !image || !temperament) {
     throw new Error(
       "Falta información, por favor, complete los datos requeridos."

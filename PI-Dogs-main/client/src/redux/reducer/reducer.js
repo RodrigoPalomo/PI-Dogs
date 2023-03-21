@@ -3,7 +3,10 @@ import {
   GET_ALL_BREEDS,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
-  GET_NAME_DOG
+  FILTER_BY_TEMPER,
+  GET_ALL_TEMPS,
+  GET_NAME_DOG,
+  GET_DOG_DETAIL,
 } from "../action-types/action-types";
 
 const initialState = {
@@ -13,30 +16,10 @@ const initialState = {
   allDogs: [],
 };
 
-const handleOrder2 = (symbol) => {
-    // acá solo me va a traer el metric del peso.
-  let justWeight = initialState.dogs.map((inst) => inst.weight.metric);
-  // al metric que me trae del peso, voy a mapearlo
-  let averageWeight = justWeight
-    // por cada instancia yo voy a querer separar por un ' - '
-    .map((inst) => inst.split(" - "))
-    // y a eso lo mapeo y me va a devolver por cada instancia
-    // un Number en la posicion[0] más un Number en la posición [1] y lo divido por 2
-    // pipícucú
-    .map((inst) => Number(inst[0]) + Number(inst[1]) / 2);
-    // ordenamos de mas liviano a mas pesado
-  if (symbol === "-") {
-    let lighterToHeavier = averageWeight.sort();
-    return lighterToHeavier;
-  }
-  // evaluamos de mas pesado a mas liviano
-  if (symbol === "+") {
-    let heavierToLighter = averageWeight.reverse();
-    return heavierToLighter;
-  }
-};
 
 const reducer = (state = initialState, action) => {
+  let aux = [];
+
   switch (action.type) {
     case GET_ALL_BREEDS:
       return {
@@ -44,16 +27,13 @@ const reducer = (state = initialState, action) => {
         dogs: action.payload,
         allDogs: action.payload,
       };
-      // case GET_TEMPERAMENTS_LIST:
-      //   return {
-      //     ...state,
-      //     temperaments: action.payload,
-      //   };
-      case GET_NAME_DOG:
-        return{
-          ...state,
-          dogs: action.payload
-        }
+
+    case GET_NAME_DOG:
+      return {
+        ...state,
+        dogs: action.payload,
+      };
+
     case ORDER_BY_NAME:
       let ordered =
         action.payload === "a-z"
@@ -81,15 +61,47 @@ const reducer = (state = initialState, action) => {
       };
 
     case ORDER_BY_WEIGHT:
-      let ordered2 =
-        action.payload === "-" ? handleOrder2("-") : handleOrder2("+");
+      if (action.payload === "min") {
+        aux = state.dogs.sort((dogA, dogB) => {
+          if (dogA.weightMin < dogB.weightMin) return -1;
+          if (dogA.weightMin > dogB.weightMin) return 1;
+          return 0;
+        });
+      }
+      if (action.payload === "max") {
+        aux = state.dogs.sort((dogA, dogB) => {
+          if (dogA.weightMax > dogB.weightMax) return -1;
+          if (dogA.weightMax < dogB.weightMax) return 1;
+          return 0;
+        });
+      }
+      if (action.payload === "ave") {
+        aux = state.dogs.sort((dogA, dogB) => {
+          if (dogA.averageWeight < dogB.averageWeight) return -1;
+          if (dogA.averageWeight > dogB.averageWeight) return 1;
+          return 0;
+        });
+      }
+      if (action.payload === "ave-max") {
+        aux = state.dogs.sort((dogA, dogB) => {
+          if (dogA.averageWeight > dogB.averageWeight) return -1;
+          if (dogA.averageWeight < dogB.averageWeight) return 1;
+          return 0;
+        });
+
+        return {
+          ...state,
+          dogs: aux,
+        };
+      }
+
+    case GET_ALL_TEMPS:
       return {
         ...state,
-        dogs: ordered2,
+        temperaments: action.payload,
       };
 
     case FILTER_BY_ORIGIN:
-      // const allDogs = state.allDogs;
       const filteredOrigin =
         action.payload === "from_DB"
           ? state.allDogs.filter((inst) => inst.from_DB)
@@ -97,6 +109,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dogs: action.payload === "All" ? state.allDogs : filteredOrigin,
+      };
+
+    case FILTER_BY_TEMPER:
+      let dogsWithChosenTemps =
+        action.payload === "all"
+          ? state.allDogs
+          : state.allDogs?.filter((dog) => {
+              if (!dog.temperament) return undefined;
+              return dog.temperament.split(", ").includes(action.payload);
+            });
+      return {
+        ...state,
+        dogs: dogsWithChosenTemps,
+      };
+
+    case GET_DOG_DETAIL:
+      return {
+        ...state,
+        dogDetail: action.payload,
       };
 
     default:

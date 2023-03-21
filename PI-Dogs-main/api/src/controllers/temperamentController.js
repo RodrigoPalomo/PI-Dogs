@@ -5,7 +5,7 @@ let gettingAlltempsfromApi = async () => {
   // me traigo la data de la API
   let datas = await axios("https://api.thedogapi.com/v1/breeds");
   let allTemps = datas.data // a las datas que me traiga de la API, voy a acceder a la data y
-    .map((el) => (el.temperament ? el.temperament : "")) // voy a mapearla. Que me devuelva el temp del elemento si existe, caso contrario que me devuelva un string vacío
+    .map((el) => (el.temperament ? el.temperament : "No hay info")) // voy a mapearla. Que me devuelva el temp del elemento si existe, caso contrario que me devuelva un string vacío
     .map((el) => el?.split(", ")); // y a los elementos que me traiga, voy a verificar si existen y voy a separarlos con una coma (", ") para que quede ordenadito
 
   // elimina todas los strings repetidos y los almacena en en arrays
@@ -13,7 +13,7 @@ let gettingAlltempsfromApi = async () => {
 
   temps.forEach((el) => {
     if (el) {
-      Temperament.bulkCreate({
+      Temperament.findOrCreate({
         // se va a crear donde el nombre sea igual al elemento
         where: {
           name: el,
