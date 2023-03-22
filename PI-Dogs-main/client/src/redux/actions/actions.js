@@ -60,16 +60,12 @@ export function getNameDog(name) {
 
 export const getDogDetail = (id) => {
   return async function (dispatch) {
-    try {
       let dogWithId = await axios(`http://localhost:3001/dogs/${id}`);
 
       return dispatch({
         type: GET_DOG_DETAIL,
         payload: dogWithId.data,
       });
-    } catch (error) {
-      console.log(error);
-    }
   };
 };
 

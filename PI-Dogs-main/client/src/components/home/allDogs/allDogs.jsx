@@ -63,8 +63,8 @@ const AllDogs = () => {
       <section className='filters-AllDogs'>
         <select defaultValue="name" onChange={event => { handleOrder1(event) }}>
           <option value="name" disabled selected></option>
-          <option value="a-z">Ordenar de la A a la Z</option>
-          <option value="z-a">Ordenar de la Z a la A</option>
+          <option value="a-z">from A to Z</option>
+          <option value="z-a">from Z to A</option>
         </select>
 
         <select defaultValue="weight" onChange={event => { handleOrder2(event) }}>
@@ -87,14 +87,13 @@ const AllDogs = () => {
 
         <select value={temperament} onChange={event => { handleFilterByTemperament(event) }}>
           <option value="all">Temperaments</option>
-          {
-            temperaments.map((temp) => {
-              return (
-                <option value={temp} key={temp}>
-                  {temp}
-                </option>
-              )
-            })
+          {temperaments.map((temp) => {
+            return (
+              <option value={temp} key={temp}>
+                {temp}
+              </option>
+            )
+          })
           }
         </select>
       </section>
@@ -109,7 +108,7 @@ const AllDogs = () => {
           return (
             <div className='cardDogs-AllDogs'>
               <Dog
-                id= {dog.id}
+                id={dog.id}
                 key={dog.id}
                 image={dog.image}
                 name={dog.name}

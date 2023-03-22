@@ -27,7 +27,7 @@ const getBreedsHandler = async (req, res) => {
 };
 const getRazaByIdHandler = async (req, res) => {
   const { idRaza } = req.params;
-  let origin= isNan(idRaza) ? "db" : "api";
+  let origin= isNaN(idRaza) ? "db" : "api";
   try {
     let result = await getBreedById(idRaza, origin);
     if(result.error) throw new Error(result.error);

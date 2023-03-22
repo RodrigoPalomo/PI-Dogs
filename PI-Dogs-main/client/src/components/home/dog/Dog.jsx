@@ -1,6 +1,6 @@
 import React from 'react';
-import './Dog.css';
 import { Link } from 'react-router-dom'
+import './Dog.css';
 
 const Dog = ({ image, name, temperament, weightMin, weightMax, averageWeight, id }) => {
   return (
