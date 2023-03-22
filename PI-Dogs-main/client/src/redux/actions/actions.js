@@ -8,6 +8,7 @@ import {
   FILTER_BY_TEMPER,
   GET_NAME_DOG,
   GET_DOG_DETAIL,
+  CREATE_DOG,
 } from "../action-types/action-types";
 
 // export const resetDogs = () => {
@@ -60,12 +61,12 @@ export function getNameDog(name) {
 
 export const getDogDetail = (id) => {
   return async function (dispatch) {
-      let dogWithId = await axios(`http://localhost:3001/dogs/${id}`);
+    let dogWithId = await axios(`http://localhost:3001/dogs/${id}`);
 
-      return dispatch({
-        type: GET_DOG_DETAIL,
-        payload: dogWithId.data,
-      });
+    return dispatch({
+      type: GET_DOG_DETAIL,
+      payload: dogWithId.data,
+    });
   };
 };
 
@@ -91,5 +92,12 @@ export const getAllTemperaments = () => {
       type: GET_ALL_TEMPS,
       payload: listOfTemperaments,
     });
+  };
+};
+
+export const createDog = (payload) => {
+  return async function (dispatch) {
+    let newDog = await axios.post("http://localhost:3001/dogs", payload);
+    return newDog;
   };
 };

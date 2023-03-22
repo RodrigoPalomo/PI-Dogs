@@ -22,11 +22,11 @@ const AllDogs = () => {
 
   const pagination = (page) => { setCurrentPage(page) }
 
-  const temperaments = useSelector((state) => state.temperaments).sort(
+  const temperaments = useSelector(state => [...state.temperaments].sort(
     function (a, b) {
       if (a < b) return -1;
       else return 1;
-    })
+    }))
 
   const handleOrder1 = (event) => {
     dispatch(orderByName(event.target.value));
@@ -69,8 +69,8 @@ const AllDogs = () => {
 
         <select defaultValue="weight" onChange={event => { handleOrder2(event) }}>
           <option value="weight" disabled selected></option>
-          <option value="min">Ordenar desde el mas pesado al mas liviano</option>
-          <option value="max">Ordenar desde el mas liviano al mas pesado</option>
+          <option value="min">Ordenar desde el mas liviano al mas pesado</option>
+          <option value="max">Ordenar desde el mas pesado al mas liviano</option>
         </select>
 
         <select defaultValue="aver" onChange={event => { handleOrder2(event) }}>
@@ -106,7 +106,7 @@ const AllDogs = () => {
       {
         currentDogs?.map(dog => {
           return (
-            <div className='cardDogs-AllDogs'>
+            <div className='cardDogs-AllDogs' key={dog.id}>
               <Dog
                 id={dog.id}
                 key={dog.id}

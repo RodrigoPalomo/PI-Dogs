@@ -14,16 +14,16 @@ const getBreedsFromApi = async () => {
     let averageWeight = weightMax + weightMin;
 
     if (weightMin && weightMax) {
-      weightMin = weightMin;
-      weightMax = weightMax;
+      // weightMin = weightMin;
+      // weightMax = weightMax;
       averageWeight = averageWeight / 2;
     } else if (weightMin && !weightMax) {
-      weightMin = weightMin;
-      weightMax = weightMin;
+      // weightMin = weightMin;
+      // weightMax = weightMin;
       averageWeight = (weightMax + weightMin) / 2;
     } else if (!weightMin && weightMax) {
-      weightMin = weightMax;
-      weightMax = weightMax;
+      // weightMin = weightMax;
+      // weightMax = weightMax;
       averageWeight = (weightMax + weightMin) / 2;
     } else {
       if (inst.name === "Smooth Fox Terrier") {
@@ -66,7 +66,9 @@ const getBreedsFromDb = async () => {
     // mapeo la data de la bd y que me devuelva lo que necesito:
     return {
       id: dog.id,
-      weight: dog.weight,
+      weightMax: dog.weightMax,
+      weightMin: dog.weightMin,
+      averageWeight: dog.averageWeight,
       height: dog.height,
       name: dog.name,
       life_span: dog.life_span,
@@ -124,7 +126,9 @@ const getBreedById = async (id, origin) => {
       if (dogDB) {
         return {
           id: inst.id,
-          weight: inst.weight,
+          weightMax: inst.weightMax,
+          weightMin: inst.weightMin,
+          averageWeight: inst.averageWeight,
           height: inst.height,
           name: inst.name,
           life_span: inst.life_span,
@@ -140,6 +144,7 @@ const getBreedById = async (id, origin) => {
         `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
       );
       let doggy = result.data.find((el) => el.id === Number(id));
+
       let weightMin = parseInt(doggy.weight.metric.slice(0, 2).trim());
       let weightMax = parseInt(doggy.weight.metric.slice(4).trim());
       let averageWeight = weightMax + weightMin;
@@ -162,12 +167,12 @@ const getBreedById = async (id, origin) => {
         averageWeight = (weightMax + weightMin) / 2;
       }
       let dogDetail = {
-        id: perrito.id,
-        name: perrito.name,
-        height: perrito.height.metric,
-        life_span: perrito.life_span,
-        image: perrito.image ? perrito.image.url : " ",
-        temperament: perrito.temperament,
+        id: doggy.id,
+        name: doggy.name,
+        height: doggy.height.metric,
+        life_span: doggy.life_span,
+        image: doggy.image ? doggy.image.url : " ",
+        temperament: doggy.temperament,
         weightMin: weightMin,
         weightMax: weightMax,
         averageWeight: averageWeight,
@@ -180,7 +185,8 @@ const getBreedById = async (id, origin) => {
 };
 
 const createNewDog = async (
-  weight,
+  weightMin,
+  weightMax,
   height,
   name,
   life_span,
@@ -188,18 +194,22 @@ const createNewDog = async (
   temperament
 ) => {
   // si alguno de estos datos no existe entonces tirame el error
-  if (!weight || !height || !name || !life_span || !image || !temperament) {
+  if (!weightMin || !weightMax || !height || !name || !life_span || !image || !temperament) {
     throw new Error(
       "Falta información, por favor, complete los datos requeridos."
     );
   } else {
     // caso contrario creame el perrito con la data pasada
     let newDog = await Dog.create({
-      weight,
+      id,
+      weightMin,
+      weightMax,
+      averageWeight,
       height,
       name,
       life_span,
       image,
+      from_DB
     });
     let temp = await Temperament.findAll({
       where: {

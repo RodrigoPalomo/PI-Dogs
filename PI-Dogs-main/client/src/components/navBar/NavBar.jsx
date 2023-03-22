@@ -15,8 +15,8 @@ const NavBar = () => {
         <Link to='/contact'>
         <li>Contacto</li>
         </Link>
-        <Link to=''>
-        <li>Nuevos perritos</li>
+        <Link to='/createDog'>
+        <li>Crear Perrito</li>
         </Link>
       </ul>
     </div>

@@ -4,11 +4,18 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Dog",
     {
-      weight: {
+      weightMax: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
+      weightMin: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      averageWeight: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       height: {
         type: DataTypes.STRING,
         allowNull: false,

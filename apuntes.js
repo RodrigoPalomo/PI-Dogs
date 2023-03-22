@@ -1,15 +1,12 @@
 
 //                                                  PARA CORREGIR
 
+// en el form no dejar que se puedan poner números negativos. (FORM)
 
-// 1 - recibir Weight del backend (que sea solo el .metric)
+// Poner límite de caracteres y de números (FORM)
 
-// 2 - recibir height del backend
-
-// 3 - corregir en el modelo peso y altura
-// ver si hay forma de transformar el peso a Number (parseInt)
-
-
+// En el home donde aparecen todos los perros hacer un boton que suba hasta arriba de la página
+// para poder moverse por el paginado sin tener que ir subiendo manualmente
 
 //                                                     APUNTES
 

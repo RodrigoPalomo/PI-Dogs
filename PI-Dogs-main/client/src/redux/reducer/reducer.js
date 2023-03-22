@@ -7,6 +7,7 @@ import {
   GET_ALL_TEMPS,
   GET_NAME_DOG,
   GET_DOG_DETAIL,
+  CREATE_DOG,
 } from "../action-types/action-types";
 
 const initialState = {
@@ -15,7 +16,6 @@ const initialState = {
   temperaments: [],
   allDogs: [],
 };
-
 
 const reducer = (state = initialState, action) => {
   let aux = [];
@@ -125,6 +125,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_DOG_DETAIL:
+      return {
+        ...state,
+        dogDetail: action.payload,
+      };
+
+    case CREATE_DOG:
       return {
         ...state,
         dogDetail: action.payload,
