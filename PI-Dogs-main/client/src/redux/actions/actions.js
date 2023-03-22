@@ -44,10 +44,10 @@ export const filterByTemper = (payload) => {
   };
 };
 
-export const getDogsByName = (name) => {
+export function getNameDog(name) {
   return async function (dispatch) {
     try {
-      let json = await axios(`http://localhost:3001/dogs?name=${name}`);
+      let json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
       return dispatch({
         type: GET_NAME_DOG,
         payload: json.data,
@@ -56,7 +56,7 @@ export const getDogsByName = (name) => {
       console.log(error);
     }
   };
-};
+}
 
 export const getDogDetail = (id) => {
   return async function (dispatch) {
@@ -86,20 +86,6 @@ export const orderByName = (payload) => {
     payload,
   };
 };
-
-export function getNameDog(name) {
-  return async function (dispatch) {
-    try {
-      let json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-      return dispatch({
-        type: "GET_NAME_DOG",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
 
 export const getAllTemperaments = () => {
   return async function (dispatch) {

@@ -108,21 +108,74 @@ const getBreedsByName = async (name) => {
   }
 };
 
-const getBreedById = async (id) => {
-  if (!isNaN(id)) {
-    let result = await axios(
-      `https://api.thedogapi.com/v1/breeds/${id}?api_key=${API_KEY}`
-    );
-    if (!Object.keys(result.data).length) {
-      throw new Error(`El perrito con el id ${id} no existe`);
+const getBreedById = async (id, origin) => {
+  try {
+    if (origin === "db") {
+      let dogDB = await Dog.findOne({
+        where: {
+          id: id,
+        },
+        include: {
+          model: Temperament,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      });
+      if (dogDB) {
+        return {
+          id: inst.id,
+          weight: inst.weight,
+          height: inst.height,
+          name: inst.name,
+          life_span: inst.life_span,
+          image: inst.image,
+          temperament: inst.temperament
+            ? inst.temperament.map((el) => el.name).join(", ")
+            : ["Happy"],
+          from_DB: true,
+        };
+      }
+    } else {
+      let result = await axios(
+        `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+      );
+      let doggy = result.data.find((el) => el.id === Number(id));
+      let weightMin = parseInt(doggy.weight.metric.slice(0, 2).trim());
+      let weightMax = parseInt(doggy.weight.metric.slice(4).trim());
+      let averageWeight = weightMax + weightMin;
+
+      if (weightMin && weightMax) {
+        averageWeight = averageWeight / 2;
+      } else if (weightMin && !weightMax) {
+        weightMax = weightMin;
+        averageWeight = weightMin;
+      } else if (!weightMin && weightMax) {
+        weightMin = weightMax;
+        averageWeight = weightMax;
+      } else if (inst.name === "Smooth Fox Terrier") {
+        weightMin = 6;
+        weightMax = 9;
+        averageWeight = (weightMax + weightMin) / 2;
+      } else {
+        weightMin = 20;
+        weightMax = 30;
+        averageWeight = (weightMax + weightMin) / 2;
+      }
+      let dogDetail = {
+        id: perrito.id,
+        name: perrito.name,
+        height: perrito.height.metric,
+        life_span: perrito.life_span,
+        image: perrito.image ? perrito.image.url : " ",
+        temperament: perrito.temperament,
+        weightMin: weightMin,
+        weightMax: weightMax,
+        averageWeight: averageWeight,
+      };
+      return dogDetail;
     }
-    return result.data;
-  } else {
-    let result = await Dog.findByPk(id);
-    if (!Object.keys(result).length) {
-      throw new Error(`El perrito con el id ${id} no existe`);
-    }
-    return result;
+  } catch (error) {
+    return { error: `El perro con el id: ${id} no existe` };
   }
 };
 

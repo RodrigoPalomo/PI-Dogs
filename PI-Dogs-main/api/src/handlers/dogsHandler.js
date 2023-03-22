@@ -27,9 +27,11 @@ const getBreedsHandler = async (req, res) => {
 };
 const getRazaByIdHandler = async (req, res) => {
   const { idRaza } = req.params;
+  let origin= isNan(idRaza) ? "db" : "api";
   try {
-    let result = await getBreedById(idRaza);
-    // la función recibe por parámetro el id de la raza
+    let result = await getBreedById(idRaza, origin);
+    if(result.error) throw new Error(result.error);
+    // la función recibe por parámetro el id de la raza y el origen
     // responde con 200 el result
     return res.status(200).json(result);
   } catch (error) {
@@ -42,7 +44,7 @@ const createNewDogHandler = async (req, res) => {
   try {
     await createNewDog(weight, height, name, life_span, image, temperament);
     // espera los datos
-    res.status(200).send("New dog successfully created");
+    res.status(200).send("Nuevo perrito creado perfectamente");
     // si todo salió bien 200 OK
   } catch (error) {
     res.status(400).json({ error: error.message });
