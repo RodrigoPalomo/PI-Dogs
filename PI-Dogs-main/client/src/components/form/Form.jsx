@@ -69,6 +69,7 @@ const Form = () => {
             name="name"
             value={inputs.name}
             onChange={(event) => handleInputs(event)} />
+            {error.name && <strong>{error.name}</strong>}
         </div>
 
         <div>
@@ -78,6 +79,7 @@ const Form = () => {
             name="image"
             value={inputs.image}
             onChange={(event) => handleInputs(event)} />
+            {error.image && <strong>{error.image}</strong>}
         </div>
 
         <div>
@@ -88,6 +90,8 @@ const Form = () => {
             name="weightMin"
             value={inputs.weightMin}
             onChange={(event) => handleInputs(event)} />
+            {error.weightMin && <strong>{error.weightMin}</strong>}
+          
           <label>Máximo: </label>
           <input
             type="number"
@@ -96,6 +100,16 @@ const Form = () => {
             onChange={(event) => handleInputs(event)} />
         </div>
 
+        <label>Máximo</label>
+        <input
+        type="number"
+        name="weightMax"
+        value={inputs.weightMax}
+        min="1"
+        max="100"
+        onChange={(event)=>handleInputs(event)}/>
+        {error.weightMax && <strong>{error.weightMax}</strong>}
+
         <div>
           <label>Altura: </label>
           <input
@@ -103,6 +117,7 @@ const Form = () => {
             name="height"
             value={inputs.height}
             onChange={(event) => handleInputs(event)} />
+            {error.height && <strong>{error.height}</strong>}
         </div>
 
         <div>
@@ -112,6 +127,7 @@ const Form = () => {
             name="life_span"
             value={inputs.life_span}
             onChange={(event) => handleInputs(event)} />
+            {error.life_span && <strong>{error.life_span}</strong>}
         </div>
 
         <h5>Temperamentos:</h5>

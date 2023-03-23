@@ -15,9 +15,9 @@ const Detail = () => {
 
   return (
     <div>
+      <img src={dogDetail?.image ? dogDetail.image : "img"} alt="img" />
       <h3>ID: {dogDetail?.id}</h3>
       <h1>Raza: {dogDetail?.name}</h1>
-      <img src={dogDetail?.image ? dogDetail.image : "img"} alt="img" />
       <h3>Peso:</h3>
       <span>Mínimo: {dogDetail?.weightMin}</span> - <span>Máximo: {dogDetail?.weightMax}</span>
       <h3>Peso promedio: {dogDetail?.averageWeight}</h3>

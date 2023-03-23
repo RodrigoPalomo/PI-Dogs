@@ -125,16 +125,16 @@ const getBreedById = async (id, origin) => {
       });
       if (dogDB) {
         return {
-          id: inst.id,
-          weightMax: inst.weightMax,
-          weightMin: inst.weightMin,
-          averageWeight: inst.averageWeight,
-          height: inst.height,
-          name: inst.name,
-          life_span: inst.life_span,
-          image: inst.image,
-          temperament: inst.temperament
-            ? inst.temperament.map((el) => el.name).join(", ")
+          id: dogDB.id,
+          weightMax: dogDB.weightMax,
+          weightMin: dogDB.weightMin,
+          averageWeight: dogDB.averageWeight,
+          height: dogDB.height,
+          name: dogDB.name,
+          life_span: dogDB.life_span,
+          image: dogDB.image,
+          temperament: dogDB.temperament
+            ? dogDB.temperament.map((el) => el.name).join(", ")
             : ["Happy"],
           from_DB: true,
         };

@@ -134,7 +134,7 @@ const reducer = (state = initialState, action) => {
     case CREATE_DOG:
       return {
         ...state,
-        dogDetail: action.payload,
+        // dogDetail: action.payload,
       };
 
     default:
