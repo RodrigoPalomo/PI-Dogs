@@ -28,7 +28,7 @@ const Form = () => {
   const handleTemperamentChoices = (event) => {
     setInputs({
       ...inputs,
-      temperaments: [...inputs.temperaments, event.target.value]
+      temperaments: [...inputs.temperaments, event.target.value]  
     })
   }
 

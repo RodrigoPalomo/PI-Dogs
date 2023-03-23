@@ -67,16 +67,16 @@ const AllDogs = () => {
           <option value="z-a">from Z to A</option>
         </select>
 
-        <select defaultValue="weight" onChange={event => { handleOrder2(event) }}>
+        <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
           <option value="weight" disabled selected></option>
-          <option value="min">Ordenar desde el mas liviano al mas pesado</option>
-          <option value="max">Ordenar desde el mas pesado al mas liviano</option>
+          <option value="min">Del más liviano al mas pesado</option>
+          <option value="max">Del más pesado al mas liviano</option>
         </select>
 
-        <select defaultValue="aver" onChange={event => { handleOrder2(event) }}>
+        <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
           <option value="aver" disabled selected></option>
-          <option value="ave">Ordenar del mas liviano al mas pesado</option>
-          <option value="ave-max">Ordenar del mas pesado al mas liviano</option>
+          <option value="ave">Del más liviano al mas pesado promedio</option>
+          <option value="ave-max">Del más pesado al mas liviano promedio</option>
         </select>
 
         <select onChange={event => { handleFilterByOrigin(event) }}>
@@ -86,7 +86,7 @@ const AllDogs = () => {
         </select>
 
         <select value={temperament} onChange={event => { handleFilterByTemperament(event) }}>
-          <option value="all">Temperaments</option>
+          <option value="all">All Temperaments</option>
           {temperaments.map((temp) => {
             return (
               <option value={temp} key={temp}>
@@ -107,15 +107,15 @@ const AllDogs = () => {
         currentDogs?.map(dog => {
           return (
             <div className='cardDogs-AllDogs' key={dog.id}>
-              <Dog
-                id={dog.id}
-                key={dog.id}
-                image={dog.image}
-                name={dog.name}
-                temperament={dog.temperament}
-                weightMin={dog.weightMin}
-                weightMax={dog.weightMax}
-                averageWeight={dog.averageWeight}
+          <Dog
+          id= {dog.id}
+          key= {dog.id}
+          image= {dog.image}
+          name= {dog.name}
+          temperament= {dog.temperament}
+          weightMin= {dog.weightMin}
+          weightMax= {dog.weightMax}
+          averageWeight= {dog.averageWeight}
               />
             </div>
           )

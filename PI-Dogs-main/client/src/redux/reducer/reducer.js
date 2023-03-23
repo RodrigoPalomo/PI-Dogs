@@ -14,6 +14,7 @@ const initialState = {
   dogs: [],
   dogDetail: {},
   temperaments: [],
+  // temperaments2: [],
   allDogs: [],
 };
 
@@ -67,38 +68,38 @@ const reducer = (state = initialState, action) => {
           if (dogA.weightMin > dogB.weightMin) return 1;
           return 0;
         });
-      }
-      if (action.payload === "max") {
+      } else if (action.payload === "max") {
         aux = state.dogs.sort((dogA, dogB) => {
           if (dogA.weightMax > dogB.weightMax) return -1;
           if (dogA.weightMax < dogB.weightMax) return 1;
           return 0;
         });
-      }
-      if (action.payload === "ave") {
+      } else if (action.payload === "ave") {
         aux = state.dogs.sort((dogA, dogB) => {
           if (dogA.averageWeight < dogB.averageWeight) return -1;
           if (dogA.averageWeight > dogB.averageWeight) return 1;
           return 0;
         });
-      }
-      if (action.payload === "ave-max") {
+      } else if (action.payload === "ave-max") {
         aux = state.dogs.sort((dogA, dogB) => {
           if (dogA.averageWeight > dogB.averageWeight) return -1;
           if (dogA.averageWeight < dogB.averageWeight) return 1;
           return 0;
         });
-
-        return {
-          ...state,
-          dogs: aux,
-        };
+      } else {
+        console.log("error");
       }
+
+      return {
+        ...state,
+        dogs: aux,
+      };
 
     case GET_ALL_TEMPS:
       return {
         ...state,
         temperaments: action.payload,
+        temperaments2: action.payload,
       };
 
     case FILTER_BY_ORIGIN:
