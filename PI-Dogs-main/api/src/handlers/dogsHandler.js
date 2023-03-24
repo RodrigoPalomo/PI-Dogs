@@ -39,10 +39,10 @@ const getRazaByIdHandler = async (req, res) => {
   }
 };
 const createNewDogHandler = async (req, res) => {
-  let { weight, height, name, life_span, image, temperament, from_DB} =
+  let { weightMin, weightMax, height, name, life_span, image, temperaments, from_DB} =
     req.body;
   try {
-    await createNewDog(weight, height, name, life_span, image, temperament);
+    await createNewDog(weightMin, weightMax, height, name, life_span, image, temperaments, from_DB);
     // espera los datos
     res.status(200).send("Nuevo perrito creado perfectamente");
     // si todo salió bien 200 OK
