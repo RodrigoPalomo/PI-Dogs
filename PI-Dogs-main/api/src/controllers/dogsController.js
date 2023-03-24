@@ -14,16 +14,10 @@ const getBreedsFromApi = async () => {
     let averageWeight = weightMax + weightMin;
 
     if (weightMin && weightMax) {
-      // weightMin = weightMin;
-      // weightMax = weightMax;
       averageWeight = averageWeight / 2;
     } else if (weightMin && !weightMax) {
-      // weightMin = weightMin;
-      // weightMax = weightMin;
       averageWeight = (weightMax + weightMin) / 2;
     } else if (!weightMin && weightMax) {
-      // weightMin = weightMax;
-      // weightMax = weightMax;
       averageWeight = (weightMax + weightMin) / 2;
     } else {
       if (inst.name === "Smooth Fox Terrier") {
@@ -58,7 +52,7 @@ const getBreedsFromDb = async () => {
     include: {
       model: Temperament,
       attributes: ["name"],
-      through: { attributes: [] },
+      through: { attributes: [], },
     },
   });
 
@@ -68,7 +62,7 @@ const getBreedsFromDb = async () => {
       id: dog.id,
       weightMax: dog.weightMax,
       weightMin: dog.weightMin,
-      averageWeight: dog.averageWeight,
+      averageWeight: (inst.weightMax + inst.weightMin) / 2,
       height: dog.height,
       name: dog.name,
       life_span: dog.life_span,
@@ -94,7 +88,7 @@ const getBreedsFromDb = async () => {
 const getBreeds = async () => {
   let breedsApi = await getBreedsFromApi();
   let breedsDb = await getBreedsFromDb();
-  let breeds = breedsApi.concat(breedsDb);
+  let breeds = breedsDb? [...breedsApi, ...breedsDb] : breedsApi;
   return breeds;
 };
 
@@ -128,7 +122,7 @@ const getBreedById = async (id, origin) => {
           id: dogDB.id,
           weightMax: dogDB.weightMax,
           weightMin: dogDB.weightMin,
-          averageWeight: dogDB.averageWeight,
+          averageWeight: (dogDB.weightMax + dogDB.weightMin) / 2,
           height: dogDB.height,
           name: dogDB.name,
           life_span: dogDB.life_span,
@@ -143,6 +137,7 @@ const getBreedById = async (id, origin) => {
       let result = await axios(
         `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
       );
+
       let doggy = result.data.find((el) => el.id === Number(id));
 
       let weightMin = parseInt(doggy.weight.metric.slice(0, 2).trim());
@@ -191,7 +186,8 @@ const createNewDog = async (
   name,
   life_span,
   image,
-  temperament
+  temperament,
+  from_DB
 ) => {
   // si alguno de estos datos no existe entonces tirame el error
   if (!weightMin || !weightMax || !height || !name || !life_span || !image || !temperament) {
@@ -201,15 +197,13 @@ const createNewDog = async (
   } else {
     // caso contrario creame el perrito con la data pasada
     let newDog = await Dog.create({
-      id,
-      weightMin,
-      weightMax,
-      averageWeight,
-      height,
-      name,
-      life_span,
-      image,
-      from_DB
+      name: name,
+      height: height,
+      life_span: life_span,
+      image: image,
+      weightMin: weightMin,
+      weightMax: weightMax,
+      averageWeight: (weightMax + weightMin) / 2,
     });
     let temp = await Temperament.findAll({
       where: {
