@@ -95,7 +95,7 @@ export const getAllTemperaments = () => {
   };
 };
 
-export const createDog = (payload) => {
+export const createNewDog = (payload) => {
   return async function (dispatch) {
     let newDog = await axios.post("http://localhost:3001/dogs", payload);
     return newDog;

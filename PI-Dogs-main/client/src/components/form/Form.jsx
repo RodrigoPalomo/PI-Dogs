@@ -11,8 +11,8 @@ const Form = () => {
     height: "",
     life_span: "",
     image: "",
-    weightMin: "",
-    weightMax: "",
+    weightMin: "0",
+    weightMax: "0",
     temperaments: [],
   })
 
@@ -23,12 +23,16 @@ const Form = () => {
       ...inputs,
       [event.target.name]: event.target.value
     })
+    setErrors(Validate({
+      ...inputs,
+      [event.target.name]: event.target.value
+    }))
   }
 
   const handleTemperamentChoices = (event) => {
     setInputs({
       ...inputs,
-      temperaments: [...inputs.temperaments, event.target.value]  
+      temperaments: [...inputs.temperaments, event.target.value]
     })
   }
 
@@ -48,8 +52,8 @@ const Form = () => {
       height: "",
       life_span: "",
       image: "",
-      weightMin: "",
-      weightMax: "",
+      weightMin: "0",
+      weightMax: "0",
       temperaments: [],
     })
   }
@@ -68,8 +72,9 @@ const Form = () => {
             type="text"
             name="name"
             value={inputs.name}
+            placeholder={"Nombre del pichicho"}
             onChange={(event) => handleInputs(event)} />
-            {error.name && <strong>{error.name}</strong>}
+          {error.name && <strong>{error.name}</strong>}
         </div>
 
         <div>
@@ -78,8 +83,9 @@ const Form = () => {
             type="text"
             name="image"
             value={inputs.image}
+            placeholder={"Imagen del pichicho"}
             onChange={(event) => handleInputs(event)} />
-            {error.image && <strong>{error.image}</strong>}
+          {error.image && <strong>{error.image}</strong>}
         </div>
 
         <div>
@@ -90,8 +96,8 @@ const Form = () => {
             name="weightMin"
             value={inputs.weightMin}
             onChange={(event) => handleInputs(event)} />
-            {error.weightMin && <strong>{error.weightMin}</strong>}
-          
+          {error.weightMin && <strong>{error.weightMin}</strong>}
+
           <label>Máximo: </label>
           <input
             type="number"
@@ -102,22 +108,21 @@ const Form = () => {
 
         <label>Máximo</label>
         <input
-        type="number"
-        name="weightMax"
-        value={inputs.weightMax}
-        min="1"
-        max="100"
-        onChange={(event)=>handleInputs(event)}/>
+          type="number"
+          name="weightMax"
+          value={inputs.weightMax}
+          onChange={(event) => handleInputs(event)} />
         {error.weightMax && <strong>{error.weightMax}</strong>}
 
         <div>
-          <label>Altura: </label>
+          <label>Altura(en centímetros):</label>
           <input
             type="text"
             name="height"
             value={inputs.height}
+            placeholder={"Por ejemplo: 40 - 65"}
             onChange={(event) => handleInputs(event)} />
-            {error.height && <strong>{error.height}</strong>}
+          {error.height && <strong>{error.height}</strong>}
         </div>
 
         <div>
@@ -126,8 +131,9 @@ const Form = () => {
             type="number"
             name="life_span"
             value={inputs.life_span}
+            placeholder={"Por ejemplo: 12 - 17"}
             onChange={(event) => handleInputs(event)} />
-            {error.life_span && <strong>{error.life_span}</strong>}
+          {error.life_span && <strong>{error.life_span}</strong>}
         </div>
 
         <h5>Temperamentos:</h5>
@@ -143,7 +149,15 @@ const Form = () => {
         </select>
         <h4>Mi perro es:</h4>
         <ul><li>{inputs.temperaments.map(temp => temp + " ,")}</li></ul>
-        <button type="submit" onClick={(event) => handleSubmit(event)}>Add my dog</button>
+        <button type="submit" onClick={(event) => handleSubmit(event)} disabled={
+          error.name || 
+          error.image || 
+          error.weightMax || 
+          error.weightMin || 
+          error.height || 
+          error.life_span || 
+          error.temperaments ||
+          !inputs.name}>Add my dog</button>
       </form>
       {inputs.temperaments.map(temp =>
         <div>
