@@ -13,8 +13,8 @@ module.exports = (sequelize) => {
         allowNull: false
       },
       averageWeight: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: DataTypes.STRING,
+        allowNull: true
       },
       height: {
         type: DataTypes.STRING,
@@ -45,6 +45,6 @@ module.exports = (sequelize) => {
         defaultValue: true,
       },
     },
-    { timestamps: false }
+    { timestamps: false, }
   );
 };
