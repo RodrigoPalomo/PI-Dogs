@@ -61,20 +61,22 @@ const AllDogs = () => {
   return (
     <>
       <section className='filters-AllDogs'>
+          {/* <p>Ordenar</p> */}
         <select defaultValue="name" onChange={event => { handleOrder1(event) }}>
-          <option value="name" disabled selected></option>
-          <option value="a-z">from A to Z</option>
-          <option value="z-a">from Z to A</option>
+          <option value="name" disabled selected>Ordenar</option>
+          <option value="a-z">De la A a la Z</option>
+          <option value="z-a">De la Z a la A</option>
         </select>
 
+        <p></p>
         <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
-          <option value="weight" disabled selected></option>
+          <option value="weight" disabled selected>Ordenar</option>
           <option value="min">Del más liviano al mas pesado</option>
           <option value="max">Del más pesado al mas liviano</option>
         </select>
 
         <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
-          <option value="aver" disabled selected></option>
+          <option value="aver" disabled selected>Ordenar</option>
           <option value="ave">Del más liviano al mas pesado promedio</option>
           <option value="ave-max">Del más pesado al mas liviano promedio</option>
         </select>
