@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { createDog, getAllTemperaments } from "../../redux/actions/actions.js";
+import { createNewDog, getAllTemperaments } from "../../redux/actions/actions";
 import Validate from "./Validate.jsx";
 
 const Form = () => {
@@ -45,7 +45,7 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createDog(inputs))
+    dispatch(createNewDog(inputs))
     alert("Dog successfully added")
     setInputs({
       name: "",
