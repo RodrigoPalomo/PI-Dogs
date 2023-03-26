@@ -15,19 +15,24 @@ const getBreedsFromApi = async () => {
 
     if (weightMin && weightMax) {
       averageWeight = averageWeight / 2;
+
     } else if (weightMin && !weightMax) {
-      averageWeight = (weightMax + weightMin) / 2;
+      weightMax = weightMin;
+      averageWeight = averageWeight / 2;
+
     } else if (!weightMin && weightMax) {
-      averageWeight = (weightMax + weightMin) / 2;
+      weightMin = weightMax;
+      averageWeight = averageWeight / 2;
+
     } else {
       if (inst.name === "Smooth Fox Terrier") {
         weightMin = 6;
         weightMax = 9;
-        averageWeight = (weightMax + weightMin) / 2;
+        averageWeight = ((weightMax) + (weightMin)) / 2;
       } else {
         weightMin = 20;
         weightMax = 30;
-        averageWeight = (weightMax + weightMin) / 2;
+        averageWeight = ((weightMax) + (weightMin)) / 2;
       }
     }
     return {
@@ -49,11 +54,11 @@ const getBreedsFromApi = async () => {
 const getBreedsFromDb = async () => {
   let dbData = await Dog.findAll({
     // espero a que me traiga todo lo de la base de datos que incluya:
-    include: {
+    include: [{
       model: Temperament,
       attributes: ["name"],
-      through: { attributes: [], },
-    },
+      through: { attributes: []},
+    }],
   });
 
   let fromDb = dbData.map((dog) => {
@@ -62,7 +67,7 @@ const getBreedsFromDb = async () => {
       id: dog.id,
       weightMax: dog.weightMax,
       weightMin: dog.weightMin,
-      averageWeight: (inst.weightMax + inst.weightMin) / 2,
+      averageWeight: (Number(dog.weightMax) + Number(dog.weightMin)) / 2,
       height: dog.height,
       name: dog.name,
       life_span: dog.life_span,
@@ -71,9 +76,9 @@ const getBreedsFromDb = async () => {
       // por cada iteración me devuelva el nombre del elemento(el) y a su vez
       // me lo separe con una coma(", "). Sino, por defecto que su temperamento sea "Happy"
       // porque todos los perritos son felices <3
-      temperament: dog.temperament
-        ? dog.temperament.map((el) => el.name).join(", ")
-        : ["Happy"],
+      temperament: dog.Temperaments
+        ? dog.Temperaments.map((el) => el.name).join(", ")
+        : "Happy",
       from_DB: true,
     };
   });
@@ -111,25 +116,25 @@ const getBreedById = async (id, origin) => {
         where: {
           id: id,
         },
-        include: {
+        include: [{
           model: Temperament,
           attributes: ["name"],
           through: { attributes: [] },
-        },
+        }],
       });
       if (dogDB) {
         return {
           id: dogDB.id,
           weightMax: dogDB.weightMax,
           weightMin: dogDB.weightMin,
-          averageWeight: (dogDB.weightMax + dogDB.weightMin) / 2,
+          averageWeight: (Number(dogDB.weightMax) + Number(dogDB.weightMin)) / 2,
           height: dogDB.height,
           name: dogDB.name,
           life_span: dogDB.life_span,
           image: dogDB.image,
-          temperament: dogDB.temperament
-            ? dogDB.temperament.map((el) => el.name).join(", ")
-            : ["Happy"],
+          temperament: dogDB.Temperaments
+            ? dogDB.Temperaments.map((el) => el.name).join(", ")
+            : "Happy",
           from_DB: true,
         };
       }

@@ -9,5 +9,3 @@
 // para poder moverse por el paginado sin tener que ir subiendo manualmente
 
 //                                                     APUNTES
-
-//
