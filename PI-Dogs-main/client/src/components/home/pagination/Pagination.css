@@ -7,10 +7,18 @@
 
 .pages-Pagination {
     display: flex;
-    gap: 37px;
+    gap: 33px;
     list-style: none;
 }
 
 .numButton-Pagination {
-    text-decoration: underline;
+    background: #ffc492;
+    border: none;
+    padding: 6px;
+    border-radius: 11px;
+    font-size: 16px;
+}
+.pages-Pagination > button{
+    /* padding: 2px; */
+    border: none;
 }

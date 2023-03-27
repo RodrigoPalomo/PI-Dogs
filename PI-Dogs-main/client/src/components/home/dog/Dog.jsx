@@ -5,13 +5,16 @@ import './Dog.css';
 const Dog = ({ image, name, temperament, weightMin, weightMax, averageWeight, id }) => {
   return (
     <div className='mainContainer-Dog'>
-      <Link to= {`/detail/${id}`}>
-        <img className='img-Dog' src={image} alt={name} />
-      </Link>
-      <h2>{name}</h2>
-      <h3>Temperament: {temperament}</h3>
-      <h3>Peso Mínimo: {weightMin} ~ Peso Máximo: {weightMax}</h3>
-      <h3>Peso Promedio: {averageWeight}</h3>
+      <div className='card-Dog'>
+        <Link to={`/detail/${id}`}>
+          <img src={image} alt={name} width='200px' height='200px' />
+        </Link>
+        <h3>{name}</h3>
+        <h4>Temperamento: {temperament}</h4>
+        <h5>Peso Mínimo: {weightMin}</h5>
+        <h5>Peso Máximo: {weightMax}</h5>
+        <h5>Peso Promedio: {averageWeight}</h5>
+      </div>
     </div>
   )
 }

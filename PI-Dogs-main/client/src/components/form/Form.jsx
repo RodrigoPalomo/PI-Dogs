@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createNewDog, getAllTemperaments } from "../../redux/actions/actions";
 import Validate from "./Validate.jsx";
+import './Form.css';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const Form = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mainContainer-Form">
       <h1>Completar la lista del perro:</h1>
       <form>
         <div>
@@ -140,7 +141,7 @@ const Form = () => {
           </label>
         </div>
 
-        <h5>Temperamentos:</h5>
+        <h4>Temperamentos:</h4>
         <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
           <option value="all"></option>
           {temperaments.map((temp) => {
@@ -151,7 +152,7 @@ const Form = () => {
             );
           })}
         </select>
-        <h4>Mi perro es:</h4>
+        {/* <h4>Mi perro es:</h4> */}
         <ul><div>{inputs.temperaments.map(temp => temp + " ,")}</div></ul>
         <button type="submit" onClick={(event) => handleSubmit(event)} disabled={
           error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name

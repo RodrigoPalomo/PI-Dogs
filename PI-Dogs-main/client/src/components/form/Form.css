@@ -1,0 +1,9 @@
+.mainContainer-Form{
+    text-align: center;
+}
+.mainContainer-Form h1{
+    margin: 50px 0px 80px;
+}
+form > div{
+    margin-bottom: 50px;
+}

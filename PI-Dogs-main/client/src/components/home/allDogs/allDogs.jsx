@@ -85,13 +85,13 @@ const AllDogs = () => {
         </select>
 
         <select onChange={event => { handleFilterByOrigin(event) }}>
-          <option value="All">All dogs</option>
-          <option value="api">Api dogs</option>
-          <option value="from_DB">My dogs</option>
+          <option value="All">Todos los perros</option>
+          <option value="api">Perros API</option>
+          <option value="from_DB">Mis perros</option>
         </select>
 
         <select value={temperament} onChange={event => { handleFilterByTemperament(event) }}>
-          <option value="all">All Temperaments</option>
+          <option value="all">Temperamentos</option>
           {temperaments.map((temp) => {
             return (
               <option value={temp} key={temp}>

@@ -1,14 +1,65 @@
 .mainContainer-Dog{
+    display: flex;
+    flex-direction: row;
+}
+.card-Dog{
+    /* flex: 1 1 21rem; */
+    display: inline-block;
+    align-items: center;
     text-align: center;
-    /* border: 1px solid tomato;
-    padding: 50px; */
-    margin-bottom: 200px;
-    border-bottom: 1px solid gray;
-    padding-bottom: 50px;
+    position: relative;
+    margin: auto;
+    background: #c9c9c9;
+    box-shadow: 0 1 10px rgba(0,0,0,0.2);
+    align-self: normal;
+    width: 300px;
+    height: 500px;
+    padding: 7px;
+    border-radius: 6px;
+    cursor: default;
+    transition: all 400ms ease;
 }
-.img-Dog{
-    width: 500px;
+.card-Dog:hover {
+    background-color: #db2777d9;
+    color:beige;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    transform: translateY(-3%);
 }
-.mainContainer-Dog > hr{
-    margin-top: 50px;
+.card-Dog img{
+    border-radius: 10px;
+    width: 100%;
+    height: 210px;
+    display: flex;
+    position:static;
+}
+.card-Dog h3{
+    font-size: 1.3rem;
+    height: 20px;
+    text-transform: uppercase;
+    margin: 10px 0;
+    /* padding: 15px; */
+    text-align: center;
+    font-family:  'Times New Roman', Times, serif;
+}
+.card-Dog h4{
+    /* height: 10px; */
+    font-size: 1rem;
+    margin: 50px 0;
+    text-align: center;
+    font-family:  'Times New Roman', Times, serif;
+}
+
+.card-Dog h5{
+    /* height: 10px; */
+    font-size: 0.8rem;
+    padding: 7px;
+    text-align: center;
+    font-family:  'Times New Roman', Times, serif;
+}
+
+.card-Dog h6{
+    margin: 15px 0;
+    padding: 2px;
+    text-align: center;
+    font-family:  'Times New Roman', Times, serif;
 }

@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <div className='mainContainer-NavBar'>
       <ul className='lista-NavBar'>
-        <Link exact to='/' >
+        <Link exact to='/home' >
         <li>Inicio</li>
         </Link>
         <Link to='/about'>

@@ -7,11 +7,16 @@
 .filters-AllDogs > select{
     padding: 5px;
     background-color: #eae6ca;
+    padding: 5px;
+    background-color: #ffc492;
+    border-radius: 6px;
+    text-align: center;
 }
 .cardDogs-AllDogs{
-    /* display: flex; */
-    /* justify-content: center; */
-    margin-bottom: 200px;
-    /* border-bottom: 1px solid gray; */
-    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 10px;
 }
