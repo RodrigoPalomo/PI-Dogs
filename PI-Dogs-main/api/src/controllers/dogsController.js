@@ -23,7 +23,6 @@ const getBreedsFromApi = async () => {
     } else if (!weightMin && weightMax) {
       weightMin = weightMax;
       averageWeight = averageWeight / 2;
-
     } else {
       if (inst.name === "Smooth Fox Terrier") {
         weightMin = 6;
