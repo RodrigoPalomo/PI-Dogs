@@ -8,16 +8,16 @@ const {
 const getBreedsHandler = async (req, res) => {
   const { name } = req.query;
   try {
-    // si existe name
-    if (name) {
+    // si no existe name
+    if (!name) {
       //ejecuto la función de getBreeds(); y la guardo en result
-      let result = await getBreedsByName(name);
+      let result = await getBreeds();
       // respondo 200 con result
       return res.status(200).json(result);
     } else {
       // caso contrario, si existe name
       // ejecuto la funcion getBreedsByName y la guardo en result
-      let result = await getBreeds();
+      let result = await getBreedsByName(name);
       // respondo 200 y result
       return res.status(200).json(result);
     }
