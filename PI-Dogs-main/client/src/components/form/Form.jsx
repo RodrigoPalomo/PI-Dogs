@@ -74,7 +74,7 @@ const Form = () => {
       <form>
         <div>
           <h4>Nombre e Imagen</h4>
-          <label>Nombre:</label>
+          <label>Nombre: </label>
           <input
             type="text"
             name="name"
