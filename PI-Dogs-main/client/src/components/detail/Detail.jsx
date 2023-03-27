@@ -1,8 +1,8 @@
 import React from 'react';
-import { getDogDetail } from '../../redux/actions/actions.js';
+import { getDogDetail, resetDetail } from '../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Detail = () => {
   let dispatch = useDispatch();
@@ -11,6 +11,9 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getDogDetail(id))
+    return()=>{
+      dispatch(resetDetail())
+    }
   }, [])
 
   return (

@@ -9,6 +9,7 @@ import {
   GET_NAME_DOG,
   GET_DOG_DETAIL,
   CREATE_DOG,
+  RESET_DETAIL
 } from "../action-types/action-types";
 
 // export const resetDogs = () => {
@@ -99,5 +100,11 @@ export const createNewDog = (payload) => {
   return async function (dispatch) {
     let newDog = await axios.post("http://localhost:3001/dogs", payload);
     return newDog;
+  };
+};
+
+export const resetDetail = () => {
+  return {
+    type: RESET_DETAIL,
   };
 };

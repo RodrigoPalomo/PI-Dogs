@@ -30,9 +30,13 @@ const Form = () => {
   }
 
   const handleTemperamentChoices = (event) => {
+    let { value } = event.target;
+    if (inputs.temperaments.includes(value)) {
+      return alert("Temperaments can not be repeated")
+    }
     setInputs({
       ...inputs,
-      temperaments: [...inputs.temperaments, event.target.value]
+      temperaments: [...inputs.temperaments, value]
     })
   }
 
@@ -46,7 +50,7 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createNewDog(inputs))
-    alert("Dog successfully added")
+    alert("¡Nuevo pichicho ingresado!")
     setInputs({
       name: "",
       height: "",
@@ -67,73 +71,73 @@ const Form = () => {
       <h1>Completar la lista del perro:</h1>
       <form>
         <div>
-          <label>Nombre: </label>
-          <input
-            type="text"
-            name="name"
-            value={inputs.name}
-            placeholder={"Nombre del pichicho"}
-            onChange={(event) => handleInputs(event)} />
-          {error.name && <strong>{error.name}</strong>}
+          <label>Nombre:
+            <input
+              type="text"
+              name="name"
+              value={inputs.name}
+              placeholder={"Nombre del pichicho"}
+              onChange={(event) => handleInputs(event)} />
+            {error.name && <strong>{error.name}</strong>}
+          </label>
         </div>
 
         <div>
-          <label>Imagen:</label>
-          <input
-            type="text"
-            name="image"
-            value={inputs.image}
-            placeholder={"Imagen del pichicho"}
-            onChange={(event) => handleInputs(event)} />
-          {error.image && <strong>{error.image}</strong>}
+          <label>Imagen:
+            <input
+              type="text"
+              name="image"
+              value={inputs.image}
+              placeholder={"Ej: http://sitioDeLaImagen.jpg"}
+              onChange={(event) => handleInputs(event)} />
+            {error.image && <strong>{error.image}</strong>}
+          </label>
         </div>
 
         <div>
           <h4>Peso:</h4>
-          <label>Mínimo: </label>
-          <input
-            type="number"
-            name="weightMin"
-            value={inputs.weightMin}
-            onChange={(event) => handleInputs(event)} />
+          <label>Mínimo:
+            <input
+              type="number"
+              name="weightMin"
+              value={inputs.weightMin}
+              onChange={(event) => handleInputs(event)} />
+          </label>
           {error.weightMin && <strong>{error.weightMin}</strong>}
 
-          <label>Máximo: </label>
-          <input
-            type="number"
-            name="weightMax"
-            value={inputs.weightMax}
-            onChange={(event) => handleInputs(event)} />
-        </div>
-
-        <label>Máximo</label>
-        <input
-          type="number"
-          name="weightMax"
-          value={inputs.weightMax}
-          onChange={(event) => handleInputs(event)} />
-        {error.weightMax && <strong>{error.weightMax}</strong>}
-
-        <div>
-          <label>Altura(en centímetros):</label>
-          <input
-            type="text"
-            name="height"
-            value={inputs.height}
-            placeholder={"Por ejemplo: 40 - 65"}
-            onChange={(event) => handleInputs(event)} />
-          {error.height && <strong>{error.height}</strong>}
+          <label>Máximo(Kilogramos):
+            <input
+              type="number"
+              name="weightMax"
+              value={inputs.weightMax}
+              onChange={(event) => handleInputs(event)}
+            />
+            {error.weightMax && <strong>{error.weightMax}</strong>}
+          </label>
         </div>
 
         <div>
-          <label>Esperanza de Vida: </label>
-          <input
-            type="number"
-            name="life_span"
-            value={inputs.life_span}
-            placeholder={"Por ejemplo: 12 - 17"}
-            onChange={(event) => handleInputs(event)} />
-          {error.life_span && <strong>{error.life_span}</strong>}
+          <label>Altura(en centímetros):
+            <input
+              type="text"
+              name="height"
+              value={inputs.height}
+              placeholder={"Por ejemplo: 40 - 65"}
+              onChange={(event) => handleInputs(event)} />
+            {error.height && <strong>{error.height}</strong>}
+          </label>
+        </div>
+
+        <div>
+          <label>Esperanza de Vida:
+            <input
+              type="text"
+              name="life_span"
+              value={inputs.life_span}
+              placeholder={"Por ejemplo: 12 - 17"}
+              onChange={(event) => handleInputs(event)} />
+            {error.life_span && <strong>{error.life_span}</strong>}
+          </label>
         </div>
 
         <h5>Temperamentos:</h5>
@@ -148,16 +152,10 @@ const Form = () => {
           })}
         </select>
         <h4>Mi perro es:</h4>
-        <ul><li>{inputs.temperaments.map(temp => temp + " ,")}</li></ul>
-        <button type="submit" onClick={(event) => handleSubmit(event)} disabled={
-          error.name || 
-          error.image || 
-          error.weightMax || 
-          error.weightMin || 
-          error.height || 
-          error.life_span || 
-          error.temperaments ||
-          !inputs.name}>Add my dog</button>
+        <ul><div>{inputs.temperaments.map(temp => temp + " ,")}</div></ul>
+        <button type="submit" onClick={(event) => handleSubmit(event)}>
+          Add my dog
+        </button>
       </form>
       {inputs.temperaments.map(temp =>
         <div>

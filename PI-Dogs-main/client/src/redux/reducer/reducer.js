@@ -8,6 +8,7 @@ import {
   GET_NAME_DOG,
   GET_DOG_DETAIL,
   CREATE_DOG,
+  RESET_DETAIL
 } from "../action-types/action-types";
 
 const initialState = {
@@ -137,9 +138,16 @@ const reducer = (state = initialState, action) => {
         // dogDetail: action.payload,
       };
 
+      case RESET_DETAIL: 
+      return {
+          ...state,
+          dogDetail: {}
+      }
+
     default:
       return { ...state };
   }
 };
+
 
 export default reducer;

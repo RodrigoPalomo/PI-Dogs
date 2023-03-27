@@ -7,3 +7,4 @@ export const ORDER_BY_WEIGHT= "ORDER_BY_WEIGHT";
 export const GET_NAME_DOG= "GET_NAME_DOG";
 export const GET_DOG_DETAIL= "GET_DOG_DETAIL"
 export const CREATE_DOG= "CREATE_DOG";
+export const RESET_DETAIL = "RESET_DETAIL"
