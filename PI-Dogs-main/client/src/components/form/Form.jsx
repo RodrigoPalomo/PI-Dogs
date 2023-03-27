@@ -69,78 +69,70 @@ const Form = () => {
 
   return (
     <div className="mainContainer-Form">
+      <div className="prueba">
       <h1>Completar la lista del perro:</h1>
       <form>
         <div>
-          <label>Nombre:
-            <input
-              type="text"
-              name="name"
-              value={inputs.name}
-              placeholder={"Nombre del pichicho"}
-              onChange={(event) => handleInputs(event)} />
-            {error.name && <strong>{error.name}</strong>}
-          </label>
+          <h4>Nombre e Imagen</h4>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            value={inputs.name}
+            placeholder={"Ej: Chulo"}
+            onChange={(event) => handleInputs(event)} />
+          {error.name && <strong>{error.name}</strong>}
         </div>
-
         <div>
-          <label>Imagen:
-            <input
-              type="text"
-              name="image"
-              value={inputs.image}
-              placeholder={"Ej: http://sitioDeLaImagen.jpg"}
-              onChange={(event) => handleInputs(event)} />
-            {error.image && <strong>{error.image}</strong>}
-          </label>
+          <label>Imagen:</label>
+          <input
+            type="text"
+            name="image"
+            value={inputs.image}
+            placeholder={"Ej: http://sitioDeLaImagen.jpg"}
+            onChange={(event) => handleInputs(event)} />
+          {error.image && <strong>{error.image}</strong>}
         </div>
-
         <div>
-          <h4>Peso:</h4>
-          <label>Mínimo:
-            <input
-              type="number"
-              name="weightMin"
-              value={inputs.weightMin}
-              onChange={(event) => handleInputs(event)} />
-          </label>
+          <h4 className="weight-Form">Peso y Altura:</h4>
+          <label>Mínimo:</label>
+          <input
+            type="number"
+            name="weightMin"
+            value={inputs.weightMin}
+            onChange={(event) => handleInputs(event)} />
           {error.weightMin && <strong>{error.weightMin}</strong>}
-
-          <label>Máximo(Kilogramos):
-            <input
-              type="number"
-              name="weightMax"
-              value={inputs.weightMax}
-              onChange={(event) => handleInputs(event)}
-            />
-            {error.weightMax && <strong>{error.weightMax}</strong>}
-          </label>
         </div>
-
         <div>
-          <label>Altura(en centímetros):
-            <input
-              type="text"
-              name="height"
-              value={inputs.height}
-              placeholder={"Por ejemplo: 40 - 65"}
-              onChange={(event) => handleInputs(event)} />
-            {error.height && <strong>{error.height}</strong>}
-          </label>
+          <label>Máximo(Kg):</label>
+          <input
+            type="number"
+            name="weightMax"
+            value={inputs.weightMax}
+            onChange={(event) => handleInputs(event)}
+          />
+          {error.weightMax && <strong>{error.weightMax}</strong>}
         </div>
-
         <div>
-          <label>Esperanza de Vida:
-            <input
-              type="text"
-              name="life_span"
-              value={inputs.life_span}
-              placeholder={"Por ejemplo: 12 - 17"}
-              onChange={(event) => handleInputs(event)} />
-            {error.life_span && <strong>{error.life_span}</strong>}
-          </label>
+          <label>Altura(Cm):</label>
+          <input
+            type="text"
+            name="height"
+            value={inputs.height}
+            placeholder={"Por ejemplo: 40 - 65"}
+            onChange={(event) => handleInputs(event)} />
+          {error.height && <strong>{error.height}</strong>}
         </div>
-
+        <div>
+          <label>Esperanza de Vida:</label>
+          <input
+            type="text"
+            name="life_span"
+            value={inputs.life_span}
+            placeholder={"Por ejemplo: 12 - 17"}
+            onChange={(event) => handleInputs(event)} />
+          {error.life_span && <strong>{error.life_span}</strong>}
+        </div>
         <h4>Temperamentos:</h4>
         <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
           <option value="all"></option>
@@ -160,12 +152,15 @@ const Form = () => {
           Crear mi pichicho
         </button>
       </form>
+      <div className="temperamentsMain-Form">
       {inputs.temperaments.map(temp =>
-        <div>
+          <div className="temperaments-Form">
           <p>{temp}</p>
           <button onClick={() => { handleDelete(temp) }}>X</button>
-        </div>
+          </div>
       )}
+        </div>
+      </div>
     </div>
   )
 }
