@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { filterByOrigin, getAllBreeds, orderByName, orderByWeight, filterByTemper, getAllTemperaments } from "../../../redux/actions/actions.js"
 import Dog from "../dog/Dog"
 import Pagination from '../pagination/Pagination';
+import SearchBar from '../searchBar/SearchBar'
+import perritoNotFound from '../allDogs/perritoNotFound.png'
 import './AllDogs.css';
 
 const AllDogs = () => {
@@ -56,12 +58,13 @@ const AllDogs = () => {
   useEffect(() => {
     dispatch(getAllBreeds())
     dispatch(getAllTemperaments())
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
+    <SearchBar setCurrentPage={setCurrentPage} />
       <section className='filters-AllDogs'>
-          {/* <p>Ordenar</p> */}
+        {/* <p>Ordenar</p> */}
         <select defaultValue="name" onChange={event => { handleOrder1(event) }}>
           <option value="name" disabled selected>Ordenar</option>
           <option value="a-z">De la A a la Z</option>
@@ -69,13 +72,13 @@ const AllDogs = () => {
         </select>
 
         <p></p>
-        <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
+        <select defaultValue="weight" onChange={event => { handleOrder2(event) }}>
           <option value="weight" disabled selected>Ordenar</option>
           <option value="min">Del más liviano al mas pesado</option>
           <option value="max">Del más pesado al mas liviano</option>
         </select>
 
-        <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
+        <select defaultValue="aver" onChange={event => { handleOrder2(event) }}>
           <option value="aver" disabled selected>Ordenar</option>
           <option value="ave">Del más liviano al mas pesado promedio</option>
           <option value="ave-max">Del más pesado al mas liviano promedio</option>
@@ -105,25 +108,30 @@ const AllDogs = () => {
         dogs={dogs.length}
         pagination={pagination} />
 
-      {
-        currentDogs?.map(dog => {
-          return (
-            <div className='cardDogs-AllDogs' key={dog.id}>
-          <Dog
-          id= {dog.id}
-          key= {dog.id}
-          image= {dog.image}
-          name= {dog.name}
-          temperament= {dog.temperament}
-          weightMin= {dog.weightMin}
-          weightMax= {dog.weightMax}
-          averageWeight= {dog.averageWeight}
+      {currentDogs.length ? (<div className='cardDogs-AllDogs'>
+        {
+          currentDogs?.map(dog => {
+            return (
+              <Dog
+                id={dog.id}
+                key={dog.id}
+                image={dog.image}
+                name={dog.name}
+                temperament={dog.temperament}
+                weightMin={dog.weightMin}
+                weightMax={dog.weightMax}
+                averageWeight={dog.averageWeight}
               />
-            </div>
-          )
-        })
-      }
-    </>
+            )
+          })
+        }
+      </div>) :
+      (<div className='perritoNotFound-AllDogs'>
+        <h3>Este pichicho no existe</h3>
+        <img src={perritoNotFound} />
+        <h3>Peeero ¿Por qué no crearlo? ;)</h3>
+      </div>)}
+   </>
   )
 }
 

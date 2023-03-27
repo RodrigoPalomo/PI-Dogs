@@ -8,7 +8,8 @@ import {
   GET_NAME_DOG,
   GET_DOG_DETAIL,
   CREATE_DOG,
-  RESET_DETAIL
+  RESET_DETAIL,
+  GET_NAME,
 } from "../action-types/action-types";
 
 const initialState = {
@@ -132,10 +133,16 @@ const reducer = (state = initialState, action) => {
         dogDetail: action.payload,
       };
 
+    case GET_NAME:
+      let name = action.payload === "" ? state.allDogs : state.dogs.filter(inst => inst.name.toLowerCase().includes(action.payload.toLowerCase()))
+      return {
+        ...state,
+        dogs: name
+      }
+
     case CREATE_DOG:
       return {
         ...state,
-        // dogDetail: action.payload,
       };
 
       case RESET_DETAIL: 
