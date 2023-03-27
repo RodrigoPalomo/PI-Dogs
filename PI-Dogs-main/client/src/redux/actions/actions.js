@@ -13,16 +13,6 @@ import {
   GET_NAME,
 } from "../action-types/action-types";
 
-// export const resetDogs = () => {
-//   return async function(dispatch) {
-//     const info = await axios("http://localhost:3001/dogs")
-//     return dispatch({
-//       type: GET_ALL_BREEDS,
-//       payload: info.data,
-//     });
-//   }
-// }
-
 export const getAllBreeds = () => {
   return async function (dispatch) {
     const info = await axios("http://localhost:3001/dogs");
@@ -116,3 +106,10 @@ export const resetDetail = () => {
     type: RESET_DETAIL,
   };
 };
+
+export const setCurrentPage= (payload)=> {
+  return {
+      type: SET_CURRENT_PAGE,
+      payload
+  }
+}

@@ -23,7 +23,6 @@ const SearchBar = ({ setCurrentPage }) => {
     <div className='mainContainer-SearchBar'>
       <div>
       </div>
-        {/* <button className='dogsBack-SearchBar' onClick={(event) => handleClick(event)}>Traer perros devuelta</button> */}
         <button className="dogsBack-SearchBar" onClick={(event) => handleClick(event)} >Traer perros devuelta</button>
       <input className='search-SearchBar' type="text" value={dog} placeholder='Buscar raza...' onChange={(event) => { setDog(event.target.value); handleChange(event.target.value) }} />
       <button className='btn-SearchBar' type="submit">Buscar</button>

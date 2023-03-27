@@ -10,6 +10,7 @@ import {
   CREATE_DOG,
   RESET_DETAIL,
   GET_NAME,
+  SET_CURRENT_PAGE,
 } from "../action-types/action-types";
 
 const initialState = {
@@ -134,27 +135,37 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_NAME:
-      let name = action.payload === "" ? state.allDogs : state.dogs.filter(inst => inst.name.toLowerCase().includes(action.payload.toLowerCase()))
+      let name =
+        action.payload === ""
+          ? state.allDogs
+          : state.dogs.filter((inst) =>
+              inst.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
       return {
         ...state,
-        dogs: name
-      }
+        dogs: name,
+      };
 
     case CREATE_DOG:
       return {
         ...state,
       };
 
-      case RESET_DETAIL: 
+    case RESET_DETAIL:
       return {
-          ...state,
-          dogDetail: {}
-      }
+        ...state,
+        dogDetail: {},
+      };
 
+    case SET_CURRENT_PAGE: {
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    }
     default:
       return { ...state };
   }
 };
-
 
 export default reducer;
