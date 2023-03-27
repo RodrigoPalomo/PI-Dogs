@@ -32,7 +32,7 @@ const Form = () => {
   const handleTemperamentChoices = (event) => {
     let { value } = event.target;
     if (inputs.temperaments.includes(value)) {
-      return alert("Temperaments can not be repeated")
+      return alert("Los temperamentos no pueden repetirse!")
     }
     setInputs({
       ...inputs,
@@ -153,8 +153,10 @@ const Form = () => {
         </select>
         <h4>Mi perro es:</h4>
         <ul><div>{inputs.temperaments.map(temp => temp + " ,")}</div></ul>
-        <button type="submit" onClick={(event) => handleSubmit(event)}>
-          Add my dog
+        <button type="submit" onClick={(event) => handleSubmit(event)} disabled={
+          error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
+        }>
+          Crear mi pichicho
         </button>
       </form>
       {inputs.temperaments.map(temp =>
