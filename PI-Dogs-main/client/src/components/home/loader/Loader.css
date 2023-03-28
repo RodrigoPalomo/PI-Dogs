@@ -1,3 +1,9 @@
+.containerLoader-Loader{
+    position: absolute;
+    right: 52%;
+    top: 37%
+}
+
 .loader {
     display: inline-block;
     position: relative;
