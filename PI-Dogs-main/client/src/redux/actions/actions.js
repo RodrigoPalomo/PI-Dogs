@@ -11,6 +11,7 @@ import {
   CREATE_DOG,
   RESET_DETAIL,
   GET_NAME,
+  SET_CURRENT_PAGE
 } from "../action-types/action-types";
 
 export const getAllBreeds = () => {

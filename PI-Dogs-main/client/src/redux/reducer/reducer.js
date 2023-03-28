@@ -14,6 +14,7 @@ import {
 } from "../action-types/action-types";
 
 const initialState = {
+  currentPage: 1,
   dogs: [],
   dogDetail: {},
   temperaments: [],
@@ -102,7 +103,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         temperaments: action.payload,
-        // temperaments2: action.payload,
       };
 
     case FILTER_BY_ORIGIN:

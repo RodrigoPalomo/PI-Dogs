@@ -1,5 +1,5 @@
 import React from 'react'
-import AllDogs from './allDogs/AllDogs';
+import AllDogs from './allDogs/allDogs.jsx';
 // import { getAllBreeds } from '../../redux/actions/actions';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';

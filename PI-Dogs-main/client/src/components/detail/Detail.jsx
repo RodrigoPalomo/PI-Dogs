@@ -3,6 +3,7 @@ import { getDogDetail, resetDetail } from '../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import './Detail.css';
 
 const Detail = () => {
   let dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Detail = () => {
   }, [])
 
   return (
-    <div>
+    <div className='mainContainer-Detail'>
       <img src={dogDetail?.image ? dogDetail.image : "img"} alt="img" />
       <h3>ID: {dogDetail?.id}</h3>
       <h1>Raza: {dogDetail?.name}</h1>
