@@ -14,10 +14,9 @@ const AllDogs = () => {
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.dogs);
   const currentPage = useSelector(state => state.currentPage)
+
   const [order, setOrder] = useState('');
   const [temperament, setTemperament] = useState('all');
-
-  // const [currentPage, setCurrentPage] = useState(1)
   const [dogsPerPage, setDogsPerPage] = useState(8);
   const [load, setLoad] = useState(true);
   const [filter, setFilter] = useState({
@@ -109,7 +108,7 @@ const AllDogs = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoad(false)
-    }, 1000)
+    }, 5000)
     dispatch(getAllBreeds())
     dispatch(getAllTemperaments())
   }, [dispatch]);
@@ -117,8 +116,8 @@ const AllDogs = () => {
   return (
   <div>
       <SearchBar />
-      <div>
-        <button className="dogsBack-SearchBar" onClick={(event) => handleClick(event)} >Traer perros devuelta</button>
+      <div className='containerBtn-AllDogs'>
+        <button className="dogsBack-AllDogs" onClick={(event) => handleClick(event)} >Traer perros devuelta</button>
       </div>
       {load && !currentDogs.length ? (<><Loader /></>) : (<>
         <div>

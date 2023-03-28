@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createNewDog, getAllTemperaments } from "../../redux/actions/actions";
 import Validate from "./Validate.jsx";
+import dogGif from './dogGif.gif';
 import './Form.css';
 
 const Form = () => {
@@ -70,96 +71,100 @@ const Form = () => {
   return (
     <div className="mainContainer-Form">
       <div className="prueba">
-      <h1>Completar la lista del perro:</h1>
-      <form>
-        <div>
-          <h4>Nombre e Imagen</h4>
-          <label>Nombre: </label>
-          <input
-            type="text"
-            name="name"
-            value={inputs.name}
-            placeholder={"Ej: Chulo"}
-            onChange={(event) => handleInputs(event)} />
-          {error.name && <strong>{error.name}</strong>}
-        </div>
-        <div>
-          <label>Imagen:</label>
-          <input
-            type="text"
-            name="image"
-            value={inputs.image}
-            placeholder={"Ej: http://sitioDeLaImagen.jpg"}
-            onChange={(event) => handleInputs(event)} />
-          {error.image && <strong>{error.image}</strong>}
-        </div>
-        <div>
-          <h4 className="weight-Form">Peso y Altura:</h4>
-          <label>Mínimo:</label>
-          <input
-            type="number"
-            name="weightMin"
-            value={inputs.weightMin}
-            onChange={(event) => handleInputs(event)} />
-          {error.weightMin && <strong>{error.weightMin}</strong>}
-        </div>
-        <div>
-          <label>Máximo(Kg):</label>
-          <input
-            type="number"
-            name="weightMax"
-            value={inputs.weightMax}
-            onChange={(event) => handleInputs(event)}
-          />
-          {error.weightMax && <strong>{error.weightMax}</strong>}
-        </div>
-        <div>
-          <label>Altura(Cm):</label>
-          <input
-            type="text"
-            name="height"
-            value={inputs.height}
-            placeholder={"Por ejemplo: 40 - 65"}
-            onChange={(event) => handleInputs(event)} />
-          {error.height && <strong>{error.height}</strong>}
-        </div>
-        <div>
-          <label>Esperanza de Vida:</label>
-          <input
-            type="text"
-            name="life_span"
-            value={inputs.life_span}
-            placeholder={"Por ejemplo: 12 - 17"}
-            onChange={(event) => handleInputs(event)} />
-          {error.life_span && <strong>{error.life_span}</strong>}
-        </div>
-        <h4>Temperamentos:</h4>
-        <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
-          <option value="all"></option>
-          {temperaments.map((temp) => {
-            return (
-              <option value={temp} key={temp}>
-                {temp}
-              </option>
-            );
-          })}
-        </select>
-        {/* <h4>Mi perro es:</h4> */}
-        <ul><div>{inputs.temperaments.map(temp => temp + " ,")}</div></ul>
-        <button type="submit" onClick={(event) => handleSubmit(event)} disabled={
-          error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
-        }>
-          Crear mi pichicho
-        </button>
-      </form>
-      <div className="temperamentsMain-Form">
-      {inputs.temperaments.map(temp =>
-          <div className="temperaments-Form">
-          <p>{temp}</p>
-          <button onClick={() => { handleDelete(temp) }}>X</button>
+        <h1>Completar la lista del perro:</h1>
+        <form>
+          <div>
+            <h4>Nombre e Imagen</h4>
+            <label>Nombre: </label>
+            <input
+              type="text"
+              name="name"
+              value={inputs.name}
+              placeholder={"Ej: Chulo"}
+              onChange={(event) => handleInputs(event)} />
+            {error.name && <p>{error.name}</p>}
           </div>
-      )}
+          <div>
+            <label>Imagen:</label>
+            <input
+              type="text"
+              name="image"
+              value={inputs.image}
+              placeholder={"Ej: http://sitioDeLaImagen.jpg"}
+              onChange={(event) => handleInputs(event)} />
+            {error.image && <p>{error.image}</p>}
+          </div>
+          <div>
+            <h4 className="weight-Form">Peso y Altura:</h4>
+            <label>Mínimo:</label>
+            <input
+              type="number"
+              name="weightMin"
+              value={inputs.weightMin}
+              onChange={(event) => handleInputs(event)} />
+            {error.weightMin && <p>{error.weightMin}</p>}
+          </div>
+          <div>
+            <label>Máximo(Kg):</label>
+            <input
+              type="number"
+              name="weightMax"
+              value={inputs.weightMax}
+              onChange={(event) => handleInputs(event)}
+            />
+            {error.weightMax && <p>{error.weightMax}</p>}
+          </div>
+          <div>
+            <label>Altura(Cm):</label>
+            <input
+              type="text"
+              name="height"
+              value={inputs.height}
+              placeholder={"Por ejemplo: 40 - 65"}
+              onChange={(event) => handleInputs(event)} />
+            {error.height && <p>{error.height}</p>}
+          </div>
+          <div>
+            <label>Esperanza de Vida:</label>
+            <input
+              type="text"
+              name="life_span"
+              value={inputs.life_span}
+              placeholder={"Por ejemplo: 12 - 17"}
+              onChange={(event) => handleInputs(event)} />
+            {error.life_span && <p>{error.life_span}</p>}
+          </div>
+          <h4>Temperamentos:</h4>
+          <h4>Cómo crees que podría ser tu perrito?</h4>
+          <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
+            <option value="all"></option>
+            {temperaments.map((temp) => {
+              return (
+                <option value={temp} key={temp}>
+                  {temp}
+                </option>
+              );
+            })}
+          </select>
+          <ul><div>{inputs.temperaments.map(temp => temp + " ,")}</div></ul>
+          <button className="btn-Form" type="submit" onClick={(event) => handleSubmit(event)} disabled={
+            error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
+          }>
+            Crear mi pichicho
+          </button>
+        </form>
+        <div className="temperamentsMain-Form">
+          {inputs.temperaments.map(temp =>
+            <div className="temperaments-Form">
+              <p>{temp}</p>
+              <button onClick={() => { handleDelete(temp) }}>X</button>
+            </div>
+          )}
         </div>
+      </div>
+      <div className="gifContainer-Form">
+        <img src={dogGif} alt="gif Dog" />
+        <h5>(El perro que estamos por crear viviendo en un universo paralelo 5 años después)</h5>
       </div>
     </div>
   )

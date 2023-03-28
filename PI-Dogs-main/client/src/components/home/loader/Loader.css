@@ -1,11 +1,11 @@
 .loader {
     display: inline-block;
     position: relative;
-    width: 80px;
+    width: 50%;
     height: 80px;
     transform: rotate(45deg);
     transform-origin: 40px 40px;
-   }
+}
    
    .loader div {
     top: 32px;
