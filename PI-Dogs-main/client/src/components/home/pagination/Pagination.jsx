@@ -2,7 +2,6 @@ import React from "react";
 import './Pagination.css';
 
 const Pagination = ({ dogsPerPage, dogs, pagination }) => {
-
     const pages = [];
 
     for (let i = 1; i <= Math.floor(dogs / dogsPerPage); i++) {
