@@ -7,6 +7,7 @@ import Form from "./components/form/Form";
 import NavBar from "./components/navBar/NavBar";
 import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
+import Error from "./components/error/Error";
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/createDog" element={<Form />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="*" element={<Error />} />
       </Routes>
     </div>
   );
